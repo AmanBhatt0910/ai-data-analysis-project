@@ -1,0 +1,9 @@
+id,name,email,department,salary,date_joined
+1,John Doe,john.doe@example.com,Engineering,95000,2023-01-15
+2,Jane Smith,jane.smith@example.com,Marketing,75000,2023-03-20
+3,Bob Johnson,bob.johnson@example.com,Sales,85000,2023-02-10
+4,Alice Williams,alice.williams@example.com,Engineering,98000,2023-04-05
+5,Charlie Brown,charlie.brown@example.com,HR,70000,2023-05-12
+6,Diana Martinez,diana.martinez@example.com,Finance,82000,2023-06-01
+7,Eve Davis,eve.davis@example.com,Engineering,96000,2023-07-15
+8,Frank Miller,frank.miller@example.com,Operations,78000,2023-08-20

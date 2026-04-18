@@ -1,0 +1,268 @@
+.upload-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+/* Upload Section */
+.upload-section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.upload-section h2 {
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.upload-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* File Input Styling */
+.file-input-wrapper {
+    position: relative;
+    overflow: hidden;
+    border: 2px dashed #007bff;
+    border-radius: 8px;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.file-input-wrapper:hover {
+    border-color: #0056b3;
+    background-color: #f0f8ff;
+}
+
+.file-input {
+    display: none;
+}
+
+.file-label {
+    display: block;
+    text-align: center;
+    cursor: pointer;
+    color: #666;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.file-input-wrapper:hover .file-label {
+    color: #0056b3;
+}
+
+/* Error Message */
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 0.75rem 1rem;
+    border-radius: 4px;
+    border: 1px solid #f5c6cb;
+    font-size: 0.95rem;
+}
+
+/* Upload Actions */
+.upload-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.upload-btn,
+.clear-btn {
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upload-btn {
+    background-color: #007bff;
+    color: white;
+}
+
+.upload-btn:hover:not(:disabled) {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 86, 179, 0.3);
+}
+
+.upload-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.clear-btn {
+    background-color: #6c757d;
+    color: white;
+}
+
+.clear-btn:hover {
+    background-color: #545b62;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(84, 91, 98, 0.3);
+}
+
+/* Data Display Section */
+.data-display-section {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.data-display-section h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1.5rem;
+}
+
+.data-info {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: #e7f3ff;
+    border-left: 4px solid #007bff;
+    border-radius: 4px;
+}
+
+.info-text {
+    margin: 0;
+    color: #0056b3;
+    font-size: 1rem;
+}
+
+.info-text strong {
+    color: #003d7a;
+}
+
+/* Table Styling */
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.data-table thead {
+    background-color: #007bff;
+    color: white;
+    position: sticky;
+    top: 0;
+}
+
+.data-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 2px solid #0056b3;
+}
+
+.data-table th.row-number {
+    width: 50px;
+    text-align: center;
+}
+
+.data-table tbody tr {
+    border-bottom: 1px solid #e0e0e0;
+    transition: background-color 0.2s ease;
+}
+
+.data-table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+.data-table td {
+    padding: 0.75rem 1rem;
+    color: #333;
+    word-break: break-word;
+    max-width: 300px;
+}
+
+.data-table td.row-number {
+    text-align: center;
+    font-weight: 500;
+    color: #666;
+    background-color: #f9f9f9;
+}
+
+.data-table tbody tr:hover td.row-number {
+    background-color: #f0f0f0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .upload-container {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .upload-section,
+    .data-display-section {
+        padding: 1.5rem;
+    }
+
+    .file-input-wrapper {
+        padding: 1.5rem;
+    }
+
+    .data-info {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .upload-actions {
+        flex-direction: column;
+    }
+
+    .upload-btn,
+    .clear-btn {
+        width: 100%;
+    }
+
+    .data-table {
+        font-size: 0.85rem;
+    }
+
+    .data-table th,
+    .data-table td {
+        padding: 0.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .data-table th,
+    .data-table td {
+        padding: 0.4rem;
+        font-size: 0.8rem;
+    }
+
+    .data-table th.row-number,
+    .data-table td.row-number {
+        width: 35px;
+        padding: 0.3rem;
+    }
+}
