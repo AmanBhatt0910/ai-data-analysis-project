@@ -2,10 +2,12 @@ package com.ai.dashboard.backend.controller;
 
 import com.ai.dashboard.backend.dto.CsvUploadResponse;
 import com.ai.dashboard.backend.service.CsvService;
+import com.ai.dashboard.backend.service.DataStorageService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import java.util.UUID;
 
 /**
  * REST API controller for CSV file upload and processing
@@ -16,9 +18,11 @@ import org.springframework.web.multipart.MultipartFile;
 public class CsvController {
 
     private final CsvService csvService;
+    private final DataStorageService dataStorageService;
 
-    public CsvController(CsvService csvService) {
+    public CsvController(CsvService csvService, DataStorageService dataStorageService) {
         this.csvService = csvService;
+        this.dataStorageService = dataStorageService;
     }
 
     /**
@@ -45,6 +49,13 @@ public class CsvController {
                                 .errorDetails("Invalid CSV structure")
                                 .build());
             }
+
+            // Generate session ID and store data
+            String sessionId = UUID.randomUUID().toString();
+            dataStorageService.storeData(sessionId, response.getData());
+            
+            // Add session ID to response
+            response.setSessionId(sessionId);
 
             return ResponseEntity.ok(response);
 

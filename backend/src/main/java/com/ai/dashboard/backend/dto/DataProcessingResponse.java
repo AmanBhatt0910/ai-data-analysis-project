@@ -5,17 +5,23 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.util.List;
+import java.util.Map;
 
+/**
+ * Response from data processing operations
+ */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class CsvUploadResponse {
+public class DataProcessingResponse {
+    
     private boolean success;
     private String message;
-    private List<String> headers;
-    private List<CsvData> data;
-    private int rowCount;
+    private List<Map<String, Object>> data;
+    private List<String> columns;
+    private int totalRows;
+    private long processingTimeMs;
     private String errorDetails;
-    private String sessionId;
+    private Map<String, Object> metadata;
 }

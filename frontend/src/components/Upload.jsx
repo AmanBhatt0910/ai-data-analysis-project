@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import API from "../service/api";
+import DataProcessing from "./DataProcessing";
 import "./Upload.css";
 
 function Upload() {
@@ -7,6 +8,7 @@ function Upload() {
     const [loading, setLoading] = useState(false);
     const [uploadData, setUploadData] = useState(null);
     const [error, setError] = useState(null);
+    const [sessionId, setSessionId] = useState(null);
 
     const handleFileChange = (e) => {
         const selectedFile = e.target.files[0];
@@ -54,6 +56,7 @@ function Upload() {
 
             if (response.data.success) {
                 setUploadData(response.data);
+                setSessionId(response.data.sessionId);
                 setError(null);
                 setFile(null);
                 // Clear file input
@@ -76,10 +79,29 @@ function Upload() {
 
     const handleClearData = () => {
         setUploadData(null);
+        setSessionId(null);
         setFile(null);
         setError(null);
     };
 
+    // If data is uploaded, show data processing interface
+    if (uploadData && sessionId) {
+        return (
+            <div className="upload-section-wrapper">
+                <div className="data-uploaded-header">
+                    <h2>Data Analysis</h2>
+                    <button onClick={handleClearData} className="clear-all-btn">← Upload New File</button>
+                </div>
+                <DataProcessing
+                    sessionId={sessionId}
+                    columns={uploadData.headers}
+                    rowCount={uploadData.rowCount}
+                />
+            </div>
+        );
+    }
+
+    // Show upload interface
     return (
         <div className="upload-container">
             <div className="upload-section">
@@ -108,15 +130,6 @@ function Upload() {
                         >
                             {loading ? "Uploading..." : "Upload"}
                         </button>
-                        {uploadData && (
-                            <button
-                                type="button"
-                                onClick={handleClearData}
-                                className="clear-btn"
-                            >
-                                Clear
-                            </button>
-                        )}
                     </div>
                 </form>
             </div>
@@ -144,7 +157,7 @@ function Upload() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {uploadData.data.map((row, index) => (
+                                {uploadData.data.slice(0, 5).map((row, index) => (
                                     <tr key={index}>
                                         <td className="row-number">{index + 1}</td>
                                         {uploadData.headers.map((header) => (
@@ -157,6 +170,7 @@ function Upload() {
                             </tbody>
                         </table>
                     </div>
+                    <p className="preview-note">* Showing first 5 rows. Use Data Analysis tab to view all data.</p>
                 </div>
             )}
         </div>
